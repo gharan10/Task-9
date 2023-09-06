@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@200&family=Montserrat:wght@300&family=Roboto:wght@100&family=Tilt+Prism&display=swap');
 *{
     margin: 0;
     padding: 0;
@@ -5,15 +6,19 @@
     font-family: 'Poppins', sans-serif;
 }
 body{
-    background: #259d8b;
+    background: #259d5f;
     
+}
+#weather{
+  font-family: 'Montserrat', sans-serif;
+  font-size:3rem ;   color:#fff; text-align: center;
 }
 .card{
     width: 90%;
     max-width: 470px;
-    background: linear-gradient(135deg, #00feba, #5b548a);
+    background: linear-gradient(135deg, #1584a2, #9f9ac1);
     color: #fff;
-    margin: 100px auto 0;
+    margin: 100px auto 0px;
     border-radius: 20px;
     padding: 40px 35px;
     box-shadow: 0 10px 15px rgba(0,0,0,0.6);
@@ -105,7 +110,7 @@ body{
   fill: currentcolor;
   font-family: "Google Sans",Roboto,Arial,sans-serif;
   font-size: 14px;
-  font-weight: 500;
+  font-weight: bolder;
   height: 48px;
   justify-content: center;
   letter-spacing: .25px;

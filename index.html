@@ -11,11 +11,14 @@
 <body>
 
     <div class="card">
-        <h1>Weather App</h1>
+        <h1 id="weather">Weather App</h1>
         <div class="search">
-            <input type="email" id="MailId" placeholder="enter email">
+            
             <input type="text" id="CityName" placeholder="enter city name" spellcheck="false">
             
+        </div>
+        <div id="mail" class="search">
+
         </div>
         <div class="error">
             <p>Invalid city name</p>
@@ -41,7 +44,7 @@
                     </div>
                 </div>
             </div>
-            <button class="button-17" id="result">Search</button>
+            <button class="button-17" id="result" onclick="mailCreation();">Search</button>
             <button class="button-17" type="button" onclick="emailSend()">send mail</button>
         </div>
     
@@ -51,8 +54,8 @@
             <script>
                 const publicKey = "ZsOG_c8Be_yEhVoPJ";
                  (function(){
-      emailjs.init(publicKey);
-   })();
+                    emailjs.init(publicKey);
+                })();
             
             const apiKey = "fc26bed6dde917b433ee1fabde70ef0c";
             const apiUrl = "https://api.openweathermap.org/data/2.5/weather?units=metric&q=";
@@ -63,9 +66,31 @@
             const weatherIcon = document.querySelector(".weather-icon");
             
             let humidity, temp, wind; 
-        async function checkWeather(city){
+           
+            function mailCreation(){
+                var check=document.getElementById('CityName').value;
+                console.log(check);
+                
+                if(check){
+
+                   var input = document.createElement("input");
+                        input.setAttribute("type", "email");
+                        input.setAttribute("id","MailId");
+                        input.setAttribute("name","email");
+                        input.setAttribute("placeholder","Enter email")
+                        let container=document.getElementById('mail');
+                        container.appendChild(input);
+                        mailCreation=null;
+                        
+                }
+                else{
+                    console.log("null value");
+                }           
+            }
+           
+            async function checkWeather(city){
             let response = await fetch(apiUrl + city + `&appid=${apiKey}`);
-            console.log(response);
+
             if(response.status >= 400){
                 document.querySelector(".error").style.display = "block";
                 document.querySelector(".weather").style.display = "none";
@@ -115,7 +140,8 @@
             }
             
     emailjs.send("service_1h1mskk", "template_mraxk51", param, publicKey).then(function () {
-        alert("Sucess")})
+        swal("Good job!", "Mail sent sucessfully!", "success");
+})
 
 }
 
@@ -123,8 +149,8 @@
        searchBtn.addEventListener("click",()=>{
         checkWeather(CityName.value);
        })
-         
-    </script>
 
+    </script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </body>
 </html>
